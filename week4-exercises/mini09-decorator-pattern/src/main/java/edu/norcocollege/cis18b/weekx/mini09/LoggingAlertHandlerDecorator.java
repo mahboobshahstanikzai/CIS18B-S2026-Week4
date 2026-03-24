@@ -1,5 +1,7 @@
 package edu.norcocollege.cis18b.weekx.mini09;
 
+import java.time.LocalDateTime;
+
 public class LoggingAlertHandlerDecorator implements AlertHandler {
     private final AlertHandler wrapped;
 
@@ -9,8 +11,8 @@ public class LoggingAlertHandlerDecorator implements AlertHandler {
 
     @Override
     public void handle(Alert alert) {
-        // TODO: Print a message before delegating.
-        // TODO: Call the wrapped handler.
-        // TODO: Print a message after delegating.
+        System.out.println("[LOG] Starting: " + LocalDateTime.now());
+        wrapped.handle(alert);
+        System.out.println("[LOG] Finished: " + LocalDateTime.now());
     }
 }

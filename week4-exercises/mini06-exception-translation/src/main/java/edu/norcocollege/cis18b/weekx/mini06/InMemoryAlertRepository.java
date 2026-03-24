@@ -4,11 +4,13 @@ public class InMemoryAlertRepository implements AlertRepository {
     @Override
     public void save(Alert alert) throws AlertStorageException {
         try {
-            // TODO: Simulate a low-level failure.
-            // Example: throw new RuntimeException("Database connection failed");
+            System.out.println("Attempting to save alert: " + alert);
+            throw new RuntimeException("DATABASE_CONNECTION_FAILED: Unable to connect");
         } catch (RuntimeException ex) {
-            // TODO: Translate the exception into AlertStorageException.
-            // Preserve the original cause.
+            throw new AlertStorageException(
+                "Failed to store alert with ID " + alert.id(),
+                ex
+            );
         }
     }
 }

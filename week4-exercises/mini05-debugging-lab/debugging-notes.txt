@@ -1,1 +1,33 @@
-TODO: Replace this text with your debugging notes.
+=== Debugging Lab - Mini Assignment 5 ===
+
+BUG DESCRIPTION:
+The program crashed with ArrayIndexOutOfBoundsException when processing an array of 3 alerts.
+
+DEBUGGING STEPS:
+1. Set a breakpoint on the for loop line
+2. Started debug mode (F5)
+3. Used Step Over (F10) to execute each iteration
+4. Watched variable 'i' in the Variables panel
+
+OBSERVATIONS:
+- Iteration 1: i = 0 → accessed alerts[0] → "CPU High" ✓
+- Iteration 2: i = 1 → accessed alerts[1] → "Disk Full" ✓
+- Iteration 3: i = 2 → accessed alerts[2] → "Login Failure" ✓
+- Iteration 4: i = 3 → attempted to access alerts[3] → EXCEPTION! ✗
+
+ROOT CAUSE:
+The loop condition used i <= alerts.length
+- alerts.length = 3
+- Loop ran for i = 0, 1, 2, 3 (4 iterations)
+- Valid array indices are 0, 1, 2 only
+
+THE FIX:
+Changed the loop condition from:
+    for (int i = 0; i <= alerts.length; i++)
+To:
+    for (int i = 0; i < alerts.length; i++)
+
+LESSONS LEARNED:
+- Always use < when iterating over arrays
+- Off-by-one errors are common in loops
+- Debugger helps visualize variable changes

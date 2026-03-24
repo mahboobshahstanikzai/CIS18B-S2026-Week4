@@ -11,8 +11,19 @@ public class AlertService {
 
     public void processAlert(Alert alert)
             throws InvalidAlertException, AlertStorageException, AlertProcessingException {
-        // TODO: Validate the alert.
-        // TODO: Save the alert.
-        // TODO: Wrap unexpected errors in AlertProcessingException.
+        
+        try {
+            validator.validate(alert);
+            System.out.println("✓ Validation passed for alert ID: " + alert.id());
+            repository.save(alert);
+            System.out.println("✓ Alert processed successfully!");
+        } catch (InvalidAlertException | AlertStorageException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new AlertProcessingException(
+                "Unexpected error processing alert with ID " + alert.id(),
+                e
+            );
+        }
     }
 }

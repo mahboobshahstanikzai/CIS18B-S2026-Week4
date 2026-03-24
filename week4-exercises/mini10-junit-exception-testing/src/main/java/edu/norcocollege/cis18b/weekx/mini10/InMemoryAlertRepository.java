@@ -8,7 +8,10 @@ public class InMemoryAlertRepository implements AlertRepository {
 
     @Override
     public void save(Alert alert) throws AlertStorageException {
-        // TODO: Save the alert to the list.
+        if (alert == null) {
+            throw new AlertStorageException("Cannot save null alert");
+        }
+        alerts.add(alert);
     }
 
     @Override

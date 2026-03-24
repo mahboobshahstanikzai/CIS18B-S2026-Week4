@@ -9,7 +9,8 @@ public class AlertService {
     }
 
     public void processAlert(Alert alert) throws InvalidAlertException, AlertStorageException {
-        // TODO: Validate the alert, then save it.
+        validator.validate(alert);
+        repository.save(alert);
     }
 
     public int getAlertCount() {

@@ -14,4 +14,9 @@ public class Alert {
     public int getId() { return id; }
     public String getMessage() { return message; }
     public AlertLevel getLevel() { return level; }
+    
+    @Override
+    public String toString() {
+        return "Alert{id=" + id + ", message='" + message + "', level=" + level + "}";
+    }
 }
